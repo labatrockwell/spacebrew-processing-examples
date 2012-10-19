@@ -1,15 +1,17 @@
-String server="lab-server.local";
+import spacebrew.*;
+
+String server="localhost";
 String name="servo";
 String description ="This is an example client which sends a range or boolean to a servo.";
 import processing.serial.*;
 
-SpacebrewClient c;
+Spacebrew c;
 Serial servoPort;
 
 void setup() {
   size(1, 1);
   
-  c = new SpacebrewClient( this );
+  c = new Spacebrew( this );
 
   // add each thing you subscribe to
   c.addSubscribe( "servoSpin", "range" );

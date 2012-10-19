@@ -1,10 +1,11 @@
+import spacebrew.*;
+
 String server="localhost";
 String name="processingButtonJSON";
 String description ="This is an example client which has a big red button you can push to send a message. It also listens for color events and will change it's color based on those messages.";
 import processing.serial.*;
 
-
-SpacebrewClient c;
+Spacebrew c;
 int numClicks = 0;
 int sec0;
 int currentColor = 255;
@@ -16,7 +17,7 @@ void setup() {
   frameRate(240);
   size(600, 400);
   
-  c = new SpacebrewClient( this );
+  c = new Spacebrew( this );
   
   // add each thing you publish and subscribe to
   c.addPublish( "buttonPress", buttonSend ); 
@@ -45,7 +46,7 @@ void mousePressed() {
   c.send( "buttonPress", buttonSend);
 }
 
-void onIntMessage( String name, int value ){
+void onRangeMessage( String name, int value ){
   println("got int message "+name +" : "+ value);
   if (name.equals("color") == true) {
       currentColor = value/4;

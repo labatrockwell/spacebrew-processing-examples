@@ -12,10 +12,14 @@ void setup() {
   spacebrewConnection = new Spacebrew( this );
   
   // add each thing you publish to
-  // spacebrewConnection.addPublish( "buttonPress", buttonSend ); 
+  spacebrewConnection.addPublish( "mouseClick", false ); 
 
   // add each thing you subscribe to
-  // spacebrewConnection.addSubscribe( "color", "range" );
+  // pass in a name to a function you want to use as a callback
+  spacebrewConnection.addSubscribe( "wasClicked", "clickRouteCallback", "boolean" );
+  
+  // add a subscriber w/o a callback
+  spacebrewConnection.addSubscribe( "anotherBoolean", "boolean" );
   
   // connect!
   spacebrewConnection.connect("ws://"+server+":9000", name, description );
@@ -23,19 +27,18 @@ void setup() {
 }
 
 void draw() {
-
 }
 
-//void mousePressed() {
-//  spacebrewConnection.send( "buttonPress", buttonSend);
-//}
+void clickRouteCallback( boolean value ){
+  println("got click route! "+value);
+}
+
+void mousePressed() {
+  spacebrewConnection.send( "mouseClick", true);
+}
 
 void onRangeMessage( String name, int value ){
   println("got int message "+name +" : "+ value);
-  //  // check name by using equals
-  //  if (name.equals("color") == true) {
-  //      currentColor = value;
-  //  }
 }
 
 void onBooleanMessage( String name, boolean value ){

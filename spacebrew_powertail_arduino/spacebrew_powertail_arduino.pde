@@ -1,3 +1,5 @@
+import spacebrew.*;
+
 String server="localhost";
 String name="PowerTail_viaProccessing";
 String description ="This is an example client that has a powertail and a light atteched and it turns on the light via the power tail.";
@@ -6,7 +8,7 @@ import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 boolean powerSwitchState = false;
 
-SpacebrewClient c;
+Spacebrew c;
 int sec0;
 
 boolean toSend = false;
@@ -15,7 +17,7 @@ void setup() {
   frameRate(240);
   size(600, 400);
   
-  c = new SpacebrewClient( this );
+  c = new Spacebrew( this );
  
   c.addSubscribe( "power", "boolean" );
   
@@ -35,7 +37,7 @@ void draw() {
 }
   
 
-void onIntMessage( String name, int value ){
+void onRangeMessage( String name, int value ){
   println("got int message "+name +" : "+ value);
      powerSwitchState = !powerSwitchState;
           if (powerSwitchState == true){

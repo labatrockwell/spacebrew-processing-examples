@@ -1,3 +1,5 @@
+import spacebrew.*;
+
 /*
   This example is of a slider that sends a value in the range of 0 to 1023.
   
@@ -11,7 +13,7 @@ String description ="This is an example client which has a red slider you can mo
 import processing.serial.*;
 
 
-SpacebrewClient c;
+Spacebrew c;
 
 // Keep track of our current place in the range
 int currentDistance = 512;
@@ -20,7 +22,7 @@ void setup() {
   size(1044, 200);
   background(0);
   
-  c = new SpacebrewClient( this );
+  c = new Spacebrew( this );
   
   // add each thing you publish to
   c.addPublish( "currentDistance", currentDistance ); 
@@ -70,7 +72,7 @@ void mouseDragged() {
 }
 
 
-void onIntMessage( String name, int value ){
+void onRangeMessage( String name, int value ){
   println("got int message " + name + " : " + value);
   
   // Only change the position of the slider if our message is of the correct name

@@ -1,3 +1,5 @@
+import spacebrew.*;
+
 String server="localhost";
 String name="processingArduinoButton";
 String description ="This is an example client which has a big red button you can push to send a message. It also listens for color events and will change it's color based on those messages.";
@@ -6,7 +8,7 @@ import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 int serialState = 31;
 
-SpacebrewClient c;
+Spacebrew c;
 int numClicks = 0;
 int sec0;
 
@@ -16,7 +18,7 @@ void setup() {
   frameRate(240);
   size(600, 400);
   
-  c = new SpacebrewClient( this );
+  c = new Spacebrew( this );
   
   // add each thing you publish and subscribe to
   c.addPublish( "procPress", toSend );
@@ -51,7 +53,7 @@ void keyPressed() {
    toSend = !toSend;
 }
 
-void onIntMessage( String name, int value ){
+void onRangeMessage( String name, int value ){
   println("got int message "+name +" : "+ value);
 }
 
