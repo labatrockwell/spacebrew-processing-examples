@@ -1,6 +1,6 @@
 import spacebrew.*;
 
-String server="localhost";
+String server="sandbox.spacebrew.cc";
 String name="processingButtonP5";
 String description ="This is an example client which has a big red button you can push to send a message. It also listens for color events and will change it's color based on those messages.";
 
@@ -47,6 +47,9 @@ void draw() {
 
 void mousePressed() {
   c.send( "buttonPress", buttonSend);
+}
+void mouseReleased() {
+  c.send( "buttonPress", false);
 }
 
 void onRangeMessage( String name, int value ){
